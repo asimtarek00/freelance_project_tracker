@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_inherit_alt_phone" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.alt.phone</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="alternative_phone"/>
+                <field name="customer_mobile"/>
+                <field name="customer_importance" widget="badge"/>
+            </xpath>
+        </field>
+    </record>
+
+    
+    <record id="view_order_tree_inherit_alt_phone" model="ir.ui.view">
+        <field name="name">sale.order.tree.inherit.alt.phone</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="alternative_phone" optional="show"/>
+                <field name="customer_mobile" optional="show"/>
+                <field name="customer_importance" widget="badge" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

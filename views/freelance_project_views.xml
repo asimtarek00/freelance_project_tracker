@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="freelance_project_view_tree" model="ir.ui.view">
+        <field name="name">freelance.project.view.tree</field>
+        <field name="model">freelance.project</field>
+        <field name="arch" type="xml">
+            <tree string="Freelance Projects">
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="client_id"/>
+                <field name="freelancer_id"/>
+                <field name="price"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="freelance_project_view_form" model="ir.ui.view">
+        <field name="name">freelance.project.view.form</field>
+        <field name="model">freelance.project</field>
+        <field name="arch" type="xml">
+            <form string="Freelance Project">
+                <header>
+                    <button name="claim_project" 
+                            type="object" 
+                            string="Claim Project" 
+                            class="oe_highlight" 
+                            states="open"/>
+                    <button name="complete_project" 
+                            type="object" 
+                            string="Complete Project" 
+                            class="oe_highlight" 
+                            states="progress"/>
+                    <field name="state" widget="statusbar" statusbar_visible="open,progress,completed"/>
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="name" placeholder="Project Title..."/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="category_id"/>
+                            <field name="client_id"/>
+                            <field name="freelancer_id"/>
+                            <field name="alternative_phone"/>
+                        </group>
+                        <group>
+                            <field name="price"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form> 
+        </field>
+    </record>
+
+    <record id="project_category_view_tree" model="ir.ui.view">
+        <field name="name">project.category.view.tree</field>
+        <field name="model">project.category</field>
+        <field name="arch" type="xml">
+            <tree string="Project Categories">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_freelance_project" model="ir.actions.act_window">
+        <field name="name">Projects</field>
+        <field name="res_model">freelance.project</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_project_category" model="ir.actions.act_window">
+        <field name="name">Project Categories</field>
+        <field name="res_model">project.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_freelance_root" name="Freelance Marketplace" sequence="10"/>
+
+    <menuitem id="menu_freelance_project" 
+              name="Projects" 
+              parent="menu_freelance_root" 
+              action="action_freelance_project" 
+              sequence="10"/>
+
+    <menuitem id="menu_project_category" 
+              name="Project Categories" 
+              parent="menu_freelance_root" 
+              action="action_project_category" 
+              sequence="20"/>
+
+</odoo>
